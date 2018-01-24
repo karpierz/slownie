@@ -115,7 +115,8 @@ def slownie_zl(amount):
 
     literally = slownie(zlote)
 
-    zlote  = abs(zlote)
+    zlote, _ = math.modf(amount / 10.0)
+    zlote  = int(abs(zlote)  *  10.0 + 0.5)
     grosze = int(abs(grosze) * 100.0 + 0.5)
 
     literally += u" "
@@ -146,7 +147,8 @@ def slownie_zl100gr(amount):
 
     literally = slownie(zlote)
 
-    zlote  = abs(zlote)
+    zlote, _ = math.modf(amount / 10.0)
+    zlote  = int(abs(zlote)  *  10.0 + 0.5)
     grosze = int(abs(grosze) * 100.0 + 0.5)
 
     literally += u" "

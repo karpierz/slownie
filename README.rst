@@ -16,11 +16,11 @@ Overview
 
   >>> from slownie import *
   >>> slownie(12892)
-  [(3, 'Winter'), (2, 'Fall'), (1, 'Summer'), (0, 'Spring')]
+  dwanaście tysięcy osiemset dziewięćdziesiąt dwa
   >>> slownie_zl(123.34)
-  [(4, 'Winter'), (3, 'Fall'), (2, 'Summer'), (1, 'Spring')]
+  sto dwadzieścia trzy złote trzydzieści cztery groszy
   >>> slownie_zl100gr(123.34)
-  [(5, 'Winter'), (4, 'Fall'), (3, 'Summer'), (2, 'Spring')]
+  sto dwadzieścia trzy złote 34/100
 
 Installation
 ============
