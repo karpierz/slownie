@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.9.7b1 (2018-01-24)
+--------------------
+  - Update required Sphinx version.
+  - Update doc Sphinx configuration files.
+
 0.9.5b1 (2017-11-18)
 --------------------
   - Add slownie_zl and slownie_zl100gr.

@@ -6,9 +6,9 @@ Polish spelled-out numbers and amounts.
 Overview
 ========
 
-**slownie** (value):
-**slownie_zl** (amount):
-**slownie_zl100gr** (amount):
+**slownie(value):** 
+**slownie_zl(amount):** 
+**slownie_zl100gr(amount):** 
 
   | Provides routines to spell out numbers and amounts in Polish.
 
@@ -18,7 +18,7 @@ Overview
   >>> slownie(12892)
   dwanaście tysięcy osiemset dziewięćdziesiąt dwa
   >>> slownie_zl(123.34)
-  sto dwadzieścia trzy złote trzydzieści cztery groszy
+  sto dwadzieścia trzy złote trzydzieści cztery grosze
   >>> slownie_zl100gr(123.34)
   sto dwadzieścia trzy złote 34/100
 
@@ -44,7 +44,7 @@ Prerequisites:
 License
 =======
 
-  | Copyright (c) 2016-2017 Adam Karpierz
+  | Copyright (c) 2016-2018 Adam Karpierz
   |
   | Licensed under the zlib/libpng License
   | http://opensource.org/licenses/zlib

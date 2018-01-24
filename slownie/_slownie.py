@@ -1,4 +1,4 @@
-# Copyright (c) 2016-2017 Adam Karpierz
+# Copyright (c) 2016-2018 Adam Karpierz
 # Licensed under the zlib/libpng License
 # http://opensource.org/licenses/zlib
 
@@ -112,28 +112,18 @@ def slownie(value):
 def slownie_zl(amount):
 
     grosze, zlote = math.modf(amount)
-
-    literally = slownie(zlote)
-
-    zlote, _ = math.modf(amount / 10.0)
-    zlote  = int(abs(zlote)  *  10.0 + 0.5)
     grosze = int(abs(grosze) * 100.0 + 0.5)
 
-    literally += u" "
-    if zlote == 1.0:
-        literally += u"z\u0142oty"
-    elif zlote in (2.0, 3.0, 4.0):
-        literally += u"z\u0142ote"
-    else:
-        literally += u"z\u0142otych"
+    literally = slownie_zl100gr(zlote)
 
     if grosze:
         literally += u" "
         literally += slownie(grosze)
+        groszy = int(math.modf(grosze / 10.0)[0] * 10.0 + 0.5)
         literally += u" "
         if grosze == 1:
             literally += u"grosz"
-        elif grosze in (2, 3, 4):
+        elif groszy in (2, 3, 4):
             literally += u"grosze"
         else:
             literally += u"groszy"
@@ -144,17 +134,14 @@ def slownie_zl(amount):
 def slownie_zl100gr(amount):
 
     grosze, zlote = math.modf(amount)
-
-    literally = slownie(zlote)
-
-    zlote, _ = math.modf(amount / 10.0)
-    zlote  = int(abs(zlote)  *  10.0 + 0.5)
     grosze = int(abs(grosze) * 100.0 + 0.5)
 
+    literally = slownie(zlote)
+    zlotych = int(abs(math.modf(zlote / 10.0)[0]) * 10.0 + 0.5)
     literally += u" "
     if zlote == 1.0:
         literally += u"z\u0142oty"
-    elif zlote in (2.0, 3.0, 4.0):
+    elif zlotych in (2, 3, 4):
         literally += u"z\u0142ote"
     else:
         literally += u"z\u0142otych"
