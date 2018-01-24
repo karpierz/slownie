@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.9.7b2 (2018-01-24)
+--------------------
+  - Little update of README.rst
+
 0.9.7b1 (2018-01-24)
 --------------------
   - Update required Sphinx version.
