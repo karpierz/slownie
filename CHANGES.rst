@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.9.7b3 (2018-01-25)
+1.0.0b1 (2018-01-27)
 --------------------
   - Fix a bug and inconsistencies in tox.ini
 
