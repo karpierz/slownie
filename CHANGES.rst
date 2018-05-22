@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.0.0b5 (2018-05-22)
+--------------------
+  - Update required setuptools version.
+
 1.0.0b4 (2018-05-08)
 --------------------
   - Update required setuptools version.
