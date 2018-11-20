@@ -75,6 +75,11 @@ PARTS_LITERALLY = [
     [u"", u"kwadryliard ", u"kwadryliardy ", u"kwadryliard\u00F3w "],
 ]
 
+GROSZE_LITERALLY = [u"groszy", u"grosz", u"grosze", u"groszy"]
+
+ZLOTE_LITERALLY = [u"z\u0142otych", u"z\u0142oty",
+                   u"z\u0142ote", u"z\u0142otych"]
+
 
 def slownie(value):
 
@@ -89,17 +94,11 @@ def slownie(value):
 
         part = int((value % 1000.0**(k + 1)) / 1000.0**k)
         hundreds, rest = divmod(part, 100)
-        tens, unities  = divmod(rest, 10)
-        if tens == 1: tens, unities = 0, rest
+        tens, unities = divmod(rest, 10)
+        if tens == 1:
+            tens, unities = 0, rest
 
-        if unities == 0:
-            nj = 3 if hundreds or tens else 0
-        elif unities == 1:
-            nj = 3 if hundreds or tens else 1
-        elif unities in (2, 3, 4):
-            nj = 2
-        else:  # unities >= 5:
-            nj = 3
+        nj = _odmiana(part)
 
         literally += HUNDREDS_LITERALLY[hundreds]
         literally += TENS_LITERALLY[tens]
@@ -110,7 +109,6 @@ def slownie(value):
 
 
 def slownie_zl(amount):
-
     grosze, zlote = math.modf(amount)
     grosze = int(abs(grosze) * 100.0 + 0.5)
 
@@ -119,32 +117,19 @@ def slownie_zl(amount):
     if grosze:
         literally += u" "
         literally += slownie(grosze)
-        groszy = int(math.modf(grosze / 10.0)[0] * 10.0 + 0.5)
-        literally += u" "
-        if grosze == 1:
-            literally += u"grosz"
-        elif groszy in (2, 3, 4):
-            literally += u"grosze"
-        else:
-            literally += u"groszy"
+        nj = _odmiana(grosze)
+        literally += u" " + GROSZE_LITERALLY[nj]
 
     return literally
 
 
 def slownie_zl100gr(amount):
-
     grosze, zlote = math.modf(amount)
     grosze = int(abs(grosze) * 100.0 + 0.5)
 
     literally = slownie(zlote)
-    zlotych = int(abs(math.modf(zlote / 10.0)[0]) * 10.0 + 0.5)
-    literally += u" "
-    if zlote == 1.0:
-        literally += u"z\u0142oty"
-    elif zlotych in (2, 3, 4):
-        literally += u"z\u0142ote"
-    else:
-        literally += u"z\u0142otych"
+    nj = _odmiana(zlote)
+    literally += u" " + ZLOTE_LITERALLY[nj]
 
     if grosze:
         literally += u" "
@@ -152,3 +137,20 @@ def slownie_zl100gr(amount):
         literally += u"/100"
 
     return literally
+
+
+def _odmiana(amount):
+    hundreds, rest = divmod(amount, 100)
+    tens, unities = divmod(rest, 10)
+    if tens == 1:
+        tens, unities = 0, rest
+
+    if unities == 0:
+        nj = 3 if hundreds or tens else 0
+    elif unities == 1:
+        nj = 3 if hundreds or tens else 1
+    elif unities in (2, 3, 4):
+        nj = 2
+    else:  # unities >= 5:
+        nj = 3
+    return nj
