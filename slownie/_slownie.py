@@ -75,6 +75,20 @@ PARTS_LITERALLY = [
     [u"", u"kwadryliard ", u"kwadryliardy ", u"kwadryliard\u00F3w "],
 ]
 
+GROSZE_LITERALLY = [
+    u" groszy",
+    u" grosz",
+    u" grosze",
+    u" groszy"
+]
+
+ZLOTE_LITERALLY = [
+    u" z\u0142otych",
+    u" z\u0142oty",
+    u" z\u0142ote",
+    u" z\u0142otych"
+]
+
 
 def slownie(value):
 
@@ -88,23 +102,13 @@ def slownie(value):
     for k in range(len(PARTS_LITERALLY) - 1, -1, -1):
 
         part = int((value % 1000.0**(k + 1)) / 1000.0**k)
-        hundreds, rest = divmod(part, 100)
-        tens, unities  = divmod(rest, 10)
-        if tens == 1: tens, unities = 0, rest
 
-        if unities == 0:
-            nj = 3 if hundreds or tens else 0
-        elif unities == 1:
-            nj = 3 if hundreds or tens else 1
-        elif unities in (2, 3, 4):
-            nj = 2
-        else:  # unities >= 5:
-            nj = 3
+        hundreds, tens, unities, declension = _split(part)
 
         literally += HUNDREDS_LITERALLY[hundreds]
         literally += TENS_LITERALLY[tens]
         literally += UNITIES_LITERALLY[unities]
-        literally += PARTS_LITERALLY[k][nj]
+        literally += PARTS_LITERALLY[k][declension]
 
     return literally[:-1]
 
@@ -119,16 +123,8 @@ def slownie_zl(amount):
     if grosze:
         literally += u" "
         literally += slownie(grosze)
-        groszy = int(math.modf(grosze / 10.0)[0] * 10.0 + 0.5)
-        literally += u" "
-        if grosze == 1:
-            literally += u"grosz"
-        elif 11 <= grosze <= 19:
-            literally += u"groszy"
-        elif groszy in (2, 3, 4):
-            literally += u"grosze"
-        else:
-            literally += u"groszy"
+        _, _, _, declension = _split(grosze)
+        literally += GROSZE_LITERALLY[declension]
 
     return literally
 
@@ -139,21 +135,26 @@ def slownie_zl100gr(amount):
     grosze = int(abs(grosze) * 100.0 + 0.5)
 
     literally = slownie(zlote)
-    zlotych = int(abs(math.modf(zlote / 10.0)[0]) * 10.0 + 0.5)
     zlote = int(abs(zlote) + 0.5)
-    literally += u" "
-    if zlote == 1:
-        literally += u"z\u0142oty"
-    elif 11 <= zlote <= 19:
-        literally += u"z\u0142otych"
-    elif zlotych in (2, 3, 4):
-        literally += u"z\u0142ote"
-    else:
-        literally += u"z\u0142otych"
-
-    if grosze:
-        literally += u" "
-        literally += str(grosze)
-        literally += u"/100"
+    _, _, _, declension = _split(zlote)
+    literally += ZLOTE_LITERALLY[declension]
+    literally += u" %02d/100" % grosze
 
     return literally
+
+
+def _split(value):
+
+    hundreds, rest = divmod(value, 100)
+    tens, unities  = divmod(rest, 10)
+    if tens == 1: tens, unities = 0, rest
+    if unities == 0:
+        declension = 3 if hundreds or tens else 0
+    elif unities == 1:
+        declension = 3 if hundreds or tens else 1
+    elif unities in (2, 3, 4):
+        declension = 2
+    else:  # unities >= 5:
+        declension = 3
+
+    return (hundreds, tens, unities, declension)
