@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.0.0b6 (2018-11-19)
+--------------------
+  - Fix a bug in slownie_zl() and slownie_zl100gr()
+
 1.0.0b5 (2018-11-08)
 --------------------
   - Drop support for Python 2.6 and 3.0-3.3

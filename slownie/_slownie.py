@@ -123,6 +123,8 @@ def slownie_zl(amount):
         literally += u" "
         if grosze == 1:
             literally += u"grosz"
+        elif 11 <= grosze <= 19:
+            literally += u"groszy"
         elif groszy in (2, 3, 4):
             literally += u"grosze"
         else:
@@ -138,9 +140,12 @@ def slownie_zl100gr(amount):
 
     literally = slownie(zlote)
     zlotych = int(abs(math.modf(zlote / 10.0)[0]) * 10.0 + 0.5)
+    zlote = int(abs(zlote) + 0.5)
     literally += u" "
-    if zlote == 1.0:
+    if zlote == 1:
         literally += u"z\u0142oty"
+    elif 11 <= zlote <= 19:
+        literally += u"z\u0142otych"
     elif zlotych in (2, 3, 4):
         literally += u"z\u0142ote"
     else:
