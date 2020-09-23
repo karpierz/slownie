@@ -10,7 +10,12 @@ Overview
 | **slownie_zl(amount):** 
 | **slownie_zl100gr(amount):** 
 
-  | Provides routines to spell out numbers and amounts in Polish.
+Provides routines to spell out numbers and amounts in Polish.
+
+`PyPI record`_.
+
+Usage
+-----
 
 .. code:: python
 
@@ -27,51 +32,68 @@ Installation
 
 Prerequisites:
 
-+ Python 2.7 or higher or 3.4 or higher
++ Python 3.6 or higher
 
-  * http://www.python.org/
-  * 2.7 and 3.6 are primary test environments.
+  * https://www.python.org/
+  * 3.7 is a primary test environment.
 
 + pip and setuptools
 
-  * http://pypi.python.org/pypi/pip
-  * http://pypi.python.org/pypi/setuptools
+  * https://pypi.org/project/pip/
+  * https://pypi.org/project/setuptools/
 
-To install run::
+To install run:
 
-    python -m pip install --upgrade slownie
+  .. parsed-literal::
+
+    python -m pip install --upgrade |package|
 
 Development
 ===========
-
-Visit `development page <https://github.com/karpierz/slownie>`__
-
-Installation from sources:
-
-Clone the `sources <https://github.com/karpierz/slownie>`__ and run::
-
-    python -m pip install ./slownie
-
-or on development mode::
-
-    python -m pip install --editable ./slownie
 
 Prerequisites:
 
 + Development is strictly based on *tox*. To install it run::
 
-    python -m pip install tox
+    python -m pip install --upgrade tox
+
+Visit `development page`_.
+
+Installation from sources:
+
+clone the sources:
+
+  .. parsed-literal::
+
+    git clone |respository| |package|
+
+and run:
+
+  .. parsed-literal::
+
+    python -m pip install ./|package|
+
+or on development mode:
+
+  .. parsed-literal::
+
+    python -m pip install --editable ./|package|
 
 License
 =======
 
-  | Copyright (c) 2016-2018 Adam Karpierz
-  |
+  | Copyright (c) 2016-2020 Adam Karpierz
   | Licensed under the zlib/libpng License
-  | http://opensource.org/licenses/zlib
+  | https://opensource.org/licenses/Zlib
   | Please refer to the accompanying LICENSE file.
 
 Authors
 =======
 
 * Adam Karpierz <adam@karpierz.net>
+
+.. |package| replace:: slownie
+.. |package_bold| replace:: **slownie**
+.. |respository| replace:: https://github.com/karpierz/slownie.git
+.. _development page: https://github.com/karpierz/slownie/
+.. _PyPI record: https://pypi.org/project/slownie/

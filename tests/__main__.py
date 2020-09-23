@@ -1,12 +1,20 @@
-# Copyright (c) 2016-2018 Adam Karpierz
+# Copyright (c) 2016-2020 Adam Karpierz
 # Licensed under the zlib/libpng License
-# http://opensource.org/licenses/zlib
+# https://opensource.org/licenses/Zlib
 
-from __future__ import absolute_import
+import unittest
+import sys
 
-import unittest, sys
 from . import test_dir, top_dir
-tests = unittest.defaultTestLoader.discover(start_dir=test_dir,
-                                            top_level_dir=top_dir)
-result = unittest.TextTestRunner(verbosity=1).run(tests)
-sys.exit(0 if result.wasSuccessful() else 1)
+
+
+def main(argv=sys.argv):
+    print("Running tests", "\n", file=sys.stderr)
+    tests = unittest.defaultTestLoader.discover(start_dir=test_dir,
+                                                top_level_dir=top_dir)
+    result = unittest.TextTestRunner(verbosity=1).run(tests)
+    return 0 if result.wasSuccessful() else 1
+
+
+if __name__.rpartition(".")[-1] == "__main__":
+    sys.exit(main())

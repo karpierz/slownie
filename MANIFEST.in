@@ -1,12 +1,17 @@
+# Copyright (c) 2016-2020 Adam Karpierz
+# Licensed under the zlib/libpng License
+# https://opensource.org/licenses/Zlib
+
 include README.rst
 include CHANGES.rst
 include LICENSE
-include tox.ini
 
-prune docs
-prune docs/_build
-prune docs/_templates
+graft docs
 
-prune tests
+graft src
 
-global-exclude *.py[co] __pycache__
+graft tests
+exclude tests/_info_.txt tests/_report_*.txt
+
+global-exclude .build .build.*
+global-exclude *.py[cod] __pycache__
