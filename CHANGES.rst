@@ -1,14 +1,15 @@
 Changelog
 =========
 
-1.1.1 (2020-09-29)
+1.1.2 (2020-10-17)
 ------------------
-- Fix a bug in slownie_zl().
 - Add support for Python 3.8 and 3.9.
 - Drop support for Python 3.5.
 - Drop support for Python 2.
+- Fix a bug in slownie_zl().
 - Add unittests.
 - General update and cleanup.
+- Fixed docs setup.
 
 1.0.0rc1 (2018-11-21)
 ---------------------
