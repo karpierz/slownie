@@ -17,3 +17,5 @@ class SlownieTestCase(unittest.TestCase):
         self.assertEqual(slownie_zl100gr(123), "sto dwadzieścia trzy złote 00/100")
         self.assertEqual(slownie_zl(123.34), "sto dwadzieścia trzy złote trzydzieści cztery grosze")
         self.assertEqual(slownie_zl100gr(123.34), "sto dwadzieścia trzy złote 34/100")
+        self.assertEqual(slownie_zl(123.34, 'i'), "sto dwadzieścia trzy złote i trzydzieści cztery grosze")
+        self.assertEqual(slownie_zl(123.34, ' i '), "sto dwadzieścia trzy złote i trzydzieści cztery grosze")
