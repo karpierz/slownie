@@ -108,14 +108,14 @@ def slownie(value):
     return literally[:-1]
 
 
-def slownie_zl(amount):
+def slownie_zl(amount, conjunction=""):
     """ """
     grosze, zlote = math.modf(amount)
     grosze = int(abs(grosze) * 100.0 + 0.5)
 
     literally = _slownie(zlote, ZLOTE_LITERALLY)
     if grosze:
-        literally += " "
+        literally += f' {conjunction.strip()} ' if conjunction else ' '
         literally += _slownie(grosze, GROSZE_LITERALLY)
 
     return literally
