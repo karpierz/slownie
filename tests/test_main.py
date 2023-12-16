@@ -1,9 +1,10 @@
-# Copyright (c) 2016-2022 Adam Karpierz
+# Copyright (c) 2016-2024 Adam Karpierz
 # Licensed under the zlib/libpng License
 # https://opensource.org/licenses/Zlib
 
 import unittest
 
+import slownie
 from slownie import slownie, slownie_zl, slownie_zl100gr
 
 

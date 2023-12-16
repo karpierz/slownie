@@ -34,10 +34,9 @@ Installation
 
 Prerequisites:
 
-+ Python 3.7 or higher
++ Python 3.8 or higher
 
   * https://www.python.org/
-  * 3.7 is a primary test environment.
 
 + pip and setuptools
 
@@ -59,7 +58,7 @@ Prerequisites:
 
     python -m pip install --upgrade tox
 
-Visit `development page`_.
+Visit `Development page`_.
 
 Installation from sources:
 
@@ -84,7 +83,7 @@ or on development mode:
 License
 =======
 
-  | Copyright (c) 2016-2022 Adam Karpierz
+  | Copyright (c) 2016-2024 Adam Karpierz
   | Licensed under the zlib/libpng License
   | https://opensource.org/licenses/Zlib
   | Please refer to the accompanying LICENSE file.
@@ -97,6 +96,6 @@ Authors
 .. |package| replace:: slownie
 .. |package_bold| replace:: **slownie**
 .. |respository| replace:: https://github.com/karpierz/slownie.git
-.. _development page: https://github.com/karpierz/slownie
+.. _Development page: https://github.com/karpierz/slownie
 .. _PyPI record: https://pypi.org/project/slownie/
 .. _Documentation: https://slownie.readthedocs.io/

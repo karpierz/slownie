@@ -1,19 +1,26 @@
 Changelog
 =========
 
+1.2.0 (2023-12-15)
+------------------
+- Add support for Python 3.12
+- Drop support for Python 3.7
+- Add support for PyPy 3.9 and 3.10
+- Copyright year update.
+- Tox configuration has been moved to pyproject.toml
+
 1.1.3 (2022-09-02)
 ------------------
 - Add support for Python 3.10 and 3.11
-- Add support for PyPy 3.7, 3.8 and 3.9
 - Drop support for Python 3.6
 - Copyright year update.
 - Setup update (currently based mainly on pyproject.toml).
 
 1.1.2 (2020-10-17)
 ------------------
-- Add support for Python 3.8 and 3.9.
-- Drop support for Python 3.5.
-- Drop support for Python 2.
+- Add support for Python 3.8 and 3.9
+- Drop support for Python 3.5
+- Drop support for Python 2
 - Fix a bug in slownie_zl().
 - Add unittests.
 - General update and cleanup.
