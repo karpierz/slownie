@@ -6,9 +6,9 @@ Polish spelled-out numbers and amounts.
 Overview
 ========
 
-| **slownie(value):** 
-| **slownie_zl(amount):** 
-| **slownie_zl100gr(amount):** 
+| **slownie(value):**
+| **slownie_zl(amount):**
+| **slownie_zl100gr(amount):**
 
 Provides routines to spell out numbers and amounts in Polish.
 
