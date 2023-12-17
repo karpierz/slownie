@@ -3,6 +3,10 @@ Changelog
 
 1.2.0 (2023-12-15)
 ------------------
+- | Added 'conjunction' parameter for the slownie_zl() function.
+  | Thanks to Tomasz Pichlinski (@tomaszpichlinskiapz).
+- | The supported parts of the amount have been extended up to
+  | 'duodecyliard'.
 - Add support for Python 3.12
 - Drop support for Python 3.7
 - Add support for PyPy 3.9 and 3.10

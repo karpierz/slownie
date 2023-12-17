@@ -9,9 +9,9 @@ __all__ = ('slownie', 'slownie_zl', 'slownie_zl100gr')
 
 ZERO_LITERALLY = "zero"
 
-MINUS_LITERALLY = "minus "
+MINUS_LITERALLY = "minus"
 
-HUNDREDS_LITERALLY = [
+HUNDREDS_LITERALLY = (
     "",
     "sto ",
     "dwie\u015Bcie ",
@@ -22,9 +22,9 @@ HUNDREDS_LITERALLY = [
     "siedemset ",
     "osiemset ",
     "dziewi\u0119\u0107set "
-]
+)
 
-TENS_LITERALLY = [
+TENS_LITERALLY = (
     "",
     "",
     "dwadzie\u015Bcia ",
@@ -35,9 +35,9 @@ TENS_LITERALLY = [
     "siedemdziesi\u0105t ",
     "osiemdziesi\u0105t ",
     "dziewi\u0119\u0107dziesi\u0105t "
-]
+)
 
-UNITIES_LITERALLY = [
+UNITIES_LITERALLY = (
     "",
     "jeden ",
     "dwa ",
@@ -58,38 +58,54 @@ UNITIES_LITERALLY = [
     "siedemna\u015Bcie ",
     "osiemna\u015Bcie ",
     "dziewi\u0119tna\u015Bcie "
-]
+)
 
-PARTS_LITERALLY = [
-    ["", "",             "",              ""],
-    ["", "tysi\u0105c ", "tysi\u0105ce ", "tysi\u0119cy "],
-    ["", "milion ",      "miliony ",      "milion\u00F3w "],
-    ["", "miliard ",     "miliardy ",     "miliard\u00F3w "],
-    ["", "bilion ",      "biliony ",      "bilion\u00F3w "],
-    ["", "biliard ",     "biliardy ",     "biliard\u00F3w "],
-    ["", "trylion ",     "tryliony ",     "trylion\u00F3w "],
-    ["", "tryliard ",    "tryliardy ",    "tryliard\u00F3w "],
-    ["", "kwadrylion ",  "kwadryliony ",  "kwadrylion\u00F3w "],
-    ["", "kwadryliard ", "kwadryliardy ", "kwadryliard\u00F3w "],
-]
+PARTS_LITERALLY = (
+    ["", "",              "",               ""],
+    ["", "tysi\u0105c ",  "tysi\u0105ce ",  "tysi\u0119cy "],
+    ["", "milion ",       "miliony ",       "milion\u00F3w "],
+    ["", "miliard ",      "miliardy ",      "miliard\u00F3w "],
+    ["", "bilion ",       "biliony ",       "bilion\u00F3w "],
+    ["", "biliard ",      "biliardy ",      "biliard\u00F3w "],
+    ["", "trylion ",      "tryliony ",      "trylion\u00F3w "],
+    ["", "tryliard ",     "tryliardy ",     "tryliard\u00F3w "],
+    ["", "kwadrylion ",   "kwadryliony ",   "kwadrylion\u00F3w "],
+    ["", "kwadryliard ",  "kwadryliardy ",  "kwadryliard\u00F3w "],
+    ["", "kwintylion ",   "kwintyliony ",   "kwintylion\u00F3w "],
+    ["", "kwintyliard ",  "kwintyliardy ",  "kwintyliard\u00F3w "],
+    ["", "sekstylion ",   "sekstyliony ",   "sekstylion\u00F3w "],
+    ["", "sekstyliard ",  "sekstyliardy ",  "sekstyliard\u00F3w "],
+    ["", "septylion ",    "septyliony ",    "septylion\u00F3w "],
+    ["", "septyliard ",   "septyliardy ",   "septyliard\u00F3w "],
+    ["", "oktylion ",     "oktyliony ",     "oktylion\u00F3w "],
+    ["", "oktyliard ",    "oktyliardy ",    "oktyliard\u00F3w "],
+    ["", "nonylion ",     "nonyliony ",     "nonylion\u00F3w "],
+    ["", "nonyliard ",    "nonyliardy ",    "nonyliard\u00F3w "],
+    ["", "decylion ",     "decyliony ",     "decylion\u00F3w "],
+    ["", "decyliard ",    "decyliardy ",    "decyliard\u00F3w "],
+    ["", "undecylion ",   "undecyliony ",   "undecylion\u00F3w "],
+    ["", "undecyliard ",  "undecyliardy ",  "undecyliard\u00F3w "],
+    ["", "duodecylion ",  "duodecyliony ",  "duodecylion\u00F3w "],
+    ["", "duodecyliard ", "duodecyliardy ", "duodecyliard\u00F3w "],
+)
 
-GROSZE_LITERALLY = [
-    " groszy",
-    " grosz",
-    " grosze",
-    " groszy"
-]
+GROSZE_LITERALLY = (
+    "groszy",
+    "grosz",
+    "grosze",
+    "groszy"
+)
 
-ZLOTE_LITERALLY = [
-    " z\u0142otych",
-    " z\u0142oty",
-    " z\u0142ote",
-    " z\u0142otych"
-]
+ZLOTE_LITERALLY = (
+    "z\u0142otych",
+    "z\u0142oty",
+    "z\u0142ote",
+    "z\u0142otych"
+)
 
 
 def slownie(value):
-    """ """
+    """Converts a number to a word notation in Polish."""
     if value == 0.0:
         return ZERO_LITERALLY
 
@@ -109,20 +125,20 @@ def slownie(value):
 
 
 def slownie_zl(amount, conjunction=""):
-    """ """
+    """Converts the amount to a word notation in Polish."""
     grosze, zlote = math.modf(amount)
     grosze = int(abs(grosze) * 100.0 + 0.5)
 
     literally = _slownie(zlote, ZLOTE_LITERALLY)
     if grosze:
-        literally += f' {conjunction.strip()} ' if conjunction else ' '
+        literally += f" {conjunction.strip()} " if conjunction else " "
         literally += _slownie(grosze, GROSZE_LITERALLY)
 
     return literally
 
 
 def slownie_zl100gr(amount):
-    """ """
+    """Converts the amount to a word notation in Polish ('grosze' as a fraction)."""
     grosze, zlote = math.modf(amount)
     grosze = int(abs(grosze) * 100.0 + 0.5)
 
@@ -136,6 +152,7 @@ def _slownie(amount, LITERALLY):
     literally = slownie(amount)
     amount = int(abs(amount) + 0.5)
     _, _, _, declension = _split(amount)
+    literally += " "
     literally += LITERALLY[declension]
     return literally
 
