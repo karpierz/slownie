@@ -11,12 +11,12 @@ from slownie import slownie, slownie_zl, slownie_zl100gr
 class SlownieTestCase(unittest.TestCase):
 
     def test_slownie(self):
-        self.assertEqual(slownie(12892), "dwanaście tysięcy osiemset dziewięćdziesiąt dwa")
-
-    def test_slownie_zl(self):
         self.assertEqual(slownie(0), "zero")
         self.assertEqual(slownie(1), "jeden")
         self.assertEqual(slownie(-1), "minus jeden")
+        self.assertEqual(slownie(12892), "dwanaście tysięcy osiemset dziewięćdziesiąt dwa")
+
+    def test_slownie_zl(self):
         self.assertEqual(slownie_zl(0), "zero złotych")
         self.assertEqual(slownie_zl100gr(0), "zero złotych 00/100")
         self.assertEqual(slownie_zl(1), "jeden złoty")
