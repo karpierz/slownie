@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.2.1 (2024-01-22)
+------------------
+- Setup update (now based on tox >= 4.0).
+
 1.2.0 (2023-12-15)
 ------------------
 - | Added 'conjunction' parameter for the slownie_zl() function.
