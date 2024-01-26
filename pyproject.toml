@@ -8,7 +8,7 @@ requires = ['setuptools>=68.2.2', 'wheel>=0.42.0', 'packaging>=23.2.0', 'tox>=4.
 
 [project]
 name        = 'slownie'
-version     = '1.2.1'
+version     = '1.2.2'
 description = 'Polish spelled-out numbers and amounts.'
 urls.Homepage      = 'https://pypi.org/project/slownie/'
 urls.Documentation = 'https://slownie.readthedocs.io/'
@@ -47,7 +47,7 @@ requires-python = '>=3.8.1,<4.0.0'
 dependencies = [
     # mandatory
     'setuptools>=68.2.2',
-    'pkg-about>=1.1.2',
+    'pkg-about>=1.1.3',
     # others
 ]
 dynamic = ['readme']
@@ -94,6 +94,11 @@ where = ['src']
 #'slownie.tests' = 'tests'
 
 [tool.setuptools.package-data]
+slownie = [
+]
+
+[tool.setuptools.exclude-package-data]
+'*' = ['*.c','*.h','*.cpp','*.hpp','*.cxx','*.hxx','*.pyx','*.pxd']
 slownie = [
 ]
 
@@ -167,7 +172,7 @@ skip_missing_interpreters = true
 requires =
     {[base]deps}
     virtualenv>=20.25.0
-    tox-backtick>=0.4.2
+    tox-backtick>=0.4.3
     tox-tags>=0.2.0
 
 [base]
@@ -233,12 +238,12 @@ depends = py{38,39,310,311,312}, pypy{39,310}win, docs
 basepython = {[base]basepython}
 setenv =
     {[testenv]setenv}
-    PKG_PVER=`{envpython} -c "import platform ; print(''.join(platform.python_version_tuple()[:2]), end='')" 2> nul`
-    PKG_NAME=`{envpython} -c "import warnings ; warnings.filterwarnings('ignore') ; import setuptools ; setuptools._distutils.core._setup_stop_after='config' ; print(setuptools.setup().metadata.get_name(),     end='')" 2> nul`
-    PKG_DIST=`{envpython} -c "import warnings ; warnings.filterwarnings('ignore') ; import setuptools ; setuptools._distutils.core._setup_stop_after='config' ; print(setuptools.setup().metadata.get_fullname(), end='')" 2> nul`
+    PKG_PVER=`{envpython} -W ignore -c "import platform ; print(''.join(platform.python_version_tuple()[:2]), end='')" 2> nul`
+    PKG_NAME=`{envpython} -W ignore -c "import setuptools ; setuptools._distutils.core._setup_stop_after='config' ; print(setuptools.setup().metadata.get_name(),     end='')" 2> nul`
+    PKG_DIST=`{envpython} -W ignore -c "import setuptools ; setuptools._distutils.core._setup_stop_after='config' ; print(setuptools.setup().metadata.get_fullname(), end='')" 2> nul`
 commands =
-    {envpython} -c "import warnings ; warnings.filterwarnings('ignore') ; from setuptools import setup ; setup()" --quiet sdist --formats=zip
-    {envpython} -c "import warnings ; warnings.filterwarnings('ignore') ; from setuptools import setup ; setup()" --quiet bdist_wheel
+    {envpython} -W ignore -c "from setuptools import setup ; setup()" --quiet sdist --formats=zip
+    {envpython} -W ignore -c "from setuptools import setup ; setup()" --quiet bdist_wheel
     # check out for PyPi
     {envpython} -m twine check dist/*
 deps =
