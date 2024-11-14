@@ -1,15 +1,15 @@
 Changelog
 =========
 
+1.3.3 (2024-11-13)
+------------------
+- More unittests.
+- 100% code coverage.
+- 100% code linting.
+- Tox configuration is now in native (toml) format.
+- Setup (dependencies) update.
+
 1.3.2 (2024-10-30)
-------------------
-- Setup (dependencies) update.
-
-1.3.1 (2024-10-09)
-------------------
-- Setup (dependencies) update.
-
-1.3.0 (2024-09-30)
 ------------------
 - Drop support for Python 3.8
 - Setup (dependencies) update.
@@ -70,21 +70,10 @@ Changelog
 - Update required setuptools version.
 - Improve and simplify setup and packaging.
 
-1.0.0b3 (2018-02-26)
---------------------
-- Improve and simplify setup and packaging.
-
 1.0.0b2 (2018-01-28)
 --------------------
 - Fix a bug and inconsistencies in tox.ini
 - Update of README.rst.
-
-0.9.7b2 (2018-01-24)
---------------------
-- Little update of README.rst
-
-0.9.7b1 (2018-01-24)
---------------------
 - Update required Sphinx version.
 - Update doc Sphinx configuration files.
 
