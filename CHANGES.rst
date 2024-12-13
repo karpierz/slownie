@@ -1,11 +1,16 @@
 Changelog
 =========
 
+1.3.4 (2024-12-13)
+------------------
+- Source distribution (\*.tar.gz now) is compliant with PEP-0625.
+- Setup (dependencies) update.
+
 1.3.3 (2024-11-13)
 ------------------
 - More unittests.
-- 100% code coverage.
 - 100% code linting.
+- 100% code coverage.
 - Tox configuration is now in native (toml) format.
 - Setup (dependencies) update.
 
