@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.3.10 (2025-03-20)
+1.3.11 (2025-03-20)
 -------------------
 - Add support for PyPy 3.11
 - Drop support for PyPy 3.9
