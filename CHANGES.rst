@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.4.4 (2025-06-11)
+------------------
+- Setup (dependencies) update.
+
 1.4.3 (2025-05-15)
 ------------------
 - The distribution is now created using 'build' instead of 'setuptools'.
