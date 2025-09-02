@@ -1,10 +1,13 @@
 # Copyright (c) 2016 Adam Karpierz
 # SPDX-License-Identifier: Zlib
 
+from typing import TypeAlias, SupportsFloat, SupportsIndex
+from collections.abc import Sequence
 import math
 
 __all__ = ('slownie', 'slownie_zl', 'slownie_zl100gr')
 
+SupportsFloatOrIndex: TypeAlias = SupportsFloat | SupportsIndex
 
 ZERO_LITERALLY = "zero"
 
@@ -103,8 +106,10 @@ ZLOTE_LITERALLY = (
 )
 
 
-def slownie(value):
+def slownie(value: SupportsFloatOrIndex) -> str:
     """Converts a number to a word notation in Polish."""
+    value = float(value)
+
     if value == 0.0:
         return ZERO_LITERALLY
 
@@ -123,7 +128,7 @@ def slownie(value):
     return literally[:-1]
 
 
-def slownie_zl(amount, conjunction=""):
+def slownie_zl(amount: SupportsFloatOrIndex, conjunction: str = "") -> str:
     """Converts the amount to a word notation in Polish."""
     grosze, zlote = math.modf(amount)
     grosze = int(abs(grosze) * 100.0 + 0.5)
@@ -136,7 +141,7 @@ def slownie_zl(amount, conjunction=""):
     return literally
 
 
-def slownie_zl100gr(amount):
+def slownie_zl100gr(amount: SupportsFloatOrIndex) -> str:
     """Converts the amount to a word notation in Polish ('grosze' as a fraction)."""
     grosze, zlote = math.modf(amount)
     grosze = int(abs(grosze) * 100.0 + 0.5)
@@ -147,16 +152,16 @@ def slownie_zl100gr(amount):
     return literally
 
 
-def _slownie(amount, LITERALLY):
+def _slownie(amount: SupportsFloatOrIndex, LITERALLY: Sequence[str]) -> str:
     literally = slownie(amount)
-    amount = int(abs(amount) + 0.5)
+    amount = int(abs(float(amount)) + 0.5)
     _, _, _, declension = _split(amount)
     literally += " "
     literally += LITERALLY[declension]
     return literally
 
 
-def _split(value):
+def _split(value: int) -> tuple[int, int, int, int]:
     hundreds, rest = divmod(value, 100)
     tens, unities  = divmod(rest, 10)
     if tens == 1: tens, unities = 0, rest
@@ -169,3 +174,6 @@ def _split(value):
     else:  # unities >= 5:
         declension = 3
     return (hundreds, tens, unities, declension)
+
+
+del SupportsFloatOrIndex
