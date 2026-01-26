@@ -6,11 +6,11 @@ Polish spelled-out numbers and amounts.
 Overview
 ========
 
-| **slownie(value):**
-| **slownie_zl(amount):**
-| **slownie_zl100gr(amount):**
-
 Provides routines to spell out numbers and amounts in Polish.
+
+| **slownie(value)**
+| **slownie_zl(amount)**
+| **slownie_zl100gr(amount)**
 
 `PyPI record`_.
 
@@ -38,10 +38,9 @@ Prerequisites:
 
   * https://www.python.org/
 
-+ pip and setuptools
++ pip
 
   * https://pypi.org/project/pip/
-  * https://pypi.org/project/setuptools/
 
 To install run:
 
@@ -54,9 +53,9 @@ Development
 
 Prerequisites:
 
-+ Development is strictly based on *tox*. To install it run::
++ Development is strictly based on *nox*. To install it run::
 
-    python -m pip install --upgrade tox
+    python -m pip install --upgrade nox
 
 Visit `Development page`_.
 
@@ -93,10 +92,21 @@ Authors
 
 * Adam Karpierz <adam@karpierz.net>
 
+Sponsoring
+==========
+
+| If you would like to sponsor the development of this project, your contribution
+  is greatly appreciated.
+| As I am now retired, any support helps me dedicate more time to maintaining and
+  improving this work.
+
+`Donate`_
+
 .. |package| replace:: slownie
 .. |package_bold| replace:: **slownie**
-.. |copyright| replace:: Copyright (c) 2016-2025 Adam Karpierz
-.. |respository| replace:: https://github.com/karpierz/slownie.git
+.. |copyright| replace:: Copyright (c) 2016-2026 Adam Karpierz
+.. |respository| replace:: https://github.com/karpierz/slownie
 .. _Development page: https://github.com/karpierz/slownie
 .. _PyPI record: https://pypi.org/project/slownie/
-.. _Documentation: https://slownie.readthedocs.io/
+.. _Documentation: https://karpierz.github.io/slownie/
+.. _Donate: https://www.paypal.com/donate/?hosted_button_id=FX8L7CJUGLW7S
