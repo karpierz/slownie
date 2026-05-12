@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: Zlib
 
 # /// script
-# dependencies = ["nox>=2026.2.9", "nox_ext", "nox_lib"]
+# dependencies = ["nox>=2026.4.10", "nox_ext", "nox_lib"]
 # ///
 
 from __future__ import annotations
@@ -63,7 +63,7 @@ def cleanup(session: nox.Session) -> None:
     rmtree(here/".tox")
     rmtree(here/".nox")
 
-@nox.session(python=[*PY_VERSIONS, "pypy3.10", "pypy3.11"])
+@nox.session(python=[*PY_VERSIONS, "pypy3.11", "graalpy3.12"])
 def tests(session: nox.Session) -> None:
     """Running tests"""
     session.install(".", "--group=test")
@@ -144,12 +144,13 @@ def publish(session: nox.Session) -> None:
 @nox.session(python=[PY_DEFAULT])
 def typing(session: nox.Session) -> None:
     """Static type checking"""
-    session.install(".", "--group=type")
+    session.install(".", "--group=typing")
     session.py("-m", "mypy")
 
 @nox.session(python=[PY_DEFAULT])
 def lint(session: nox.Session) -> None:
     """Checking code style and quality"""
     session.install(".", "--group=lint")
+    env_dir = Path(session.virtualenv.location)
     out_file = env_dir/"flake8out.txt"
     session.py("-m", "flake8", "--output-file", out_file, here/"src/")

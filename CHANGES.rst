@@ -1,6 +1,13 @@
 Changelog
 =========
 
+2.4.0 (2026-05-11)
+------------------
+- Added support for GraalPy 3.12
+- Dropped support for Python 3.10 (due to compatibility issues).
+- Fix for nox 'lint' session.
+- Setup update and improvement.
+
 2.3.0 (2026-03-30)
 ------------------
 - Setup update and improvement.
