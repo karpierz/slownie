@@ -47,14 +47,15 @@ rmtree   = partial(shutil.rmtree, ignore_errors=True)
 def prepare(session: nox.Session) -> None:
     """Preparing the repository"""
     cmd = here/".aprep.cmd"
-    if cmd.is_file(): subprocess.run([cmd])
+    if cmd.is_file(): session.run(cmd, external=True)
 
 @nox.session(python=[PY_DEFAULT], default=False)
 def cleanup(session: nox.Session) -> None:
     """Cleaning the repository"""
-#no_package = true
+    # no_package = true
     cmd = here/".clean.cmd"
-    if cmd.is_file(): subprocess.run([cmd], stderr=subprocess.DEVNULL)
+    if cmd.is_file():
+        session.run(cmd, stderr=subprocess.DEVNULL, external=True)
     rmtree(here/"build")
     rmtree(here/"dist")
     for item in here.glob("src/*.egg-info"): rmtree(item)
@@ -76,7 +77,7 @@ def coverage(session: nox.Session) -> None:
     session.install(".", "--group=coverage")
     env_dir = Path(session.virtualenv.location)
     data_file = env_dir/".coverage"
-    html_dir  = env_dir/'.coverage.html'
+    html_dir  = env_dir/".coverage_html"
     session.py("-m", "coverage", "erase", f"--data-file={data_file}")
     session.py("-m", "coverage", "run",   f"--data-file={data_file}", "-m", "tests",
                *session.posargs, success_codes=range(0, 256))
@@ -91,8 +92,8 @@ def docs(session: nox.Session) -> None:
     html_dir = here/"build/docs/html"
     session.py("-m", "sphinxlint", "-i", "#arch", "-i", ".nox", "-i", ".tox",
                                    "-i", "build", "-i", "dist", "-i", ".mypy_cache")
-    #session.run("python","-m", "sphinx.apidoc", "-f", *[session.site_packages/f"{item}/"
-    #                                                    for item in PKG.TOP_LEVELS])
+    # session.py("-m", "sphinx.apidoc", "-f", *[session.site_packages/f"{item}/"
+    #                                           for item in PKG.TOP_LEVELS])
     session.py("-m", "sphinx.cmd.build", "-W", "-a", "-b", "html", "-E", here/"docs", html_dir)
     session.py("-m", "sphinx.cmd.build", "-W", "-a", "-b", "doctest",    here/"docs", html_dir)
     session.py("-m", "sphinx.cmd.build", "-W", "-a", "-b", "linkcheck",  here/"docs", html_dir)
@@ -119,9 +120,9 @@ def publish(session: nox.Session) -> None:
     env_dir = Path(session.virtualenv.location)
     gh_pages_dir = env_dir/"gh-pages"
     rmtree(gh_pages_dir)
-    session.run("git", "worktree", "prune")
-    #session.run("git", "worktree", "add", gh_pages_dir, "gh-pages")
-    session.run("git", "worktree", "add", "-B", "gh-pages", gh_pages_dir)
+    session.git("worktree", "prune")
+    # session.git("worktree", "add", gh_pages_dir, "gh-pages")
+    session.git("worktree", "add", "-B", "gh-pages", gh_pages_dir)
     # clean old docs
     (gh_pages_dir/".nojekyll").touch()
     for fpath in gh_pages_dir.iterdir():
@@ -133,13 +134,13 @@ def publish(session: nox.Session) -> None:
     # copy new docs
     copytree(here/"build/docs/html", gh_pages_dir, dirs_exist_ok=True)
     # commit + push
-    session.run("git", "-C", gh_pages_dir, "add", ".")
-    session.run("git", "-C", gh_pages_dir, "commit", "-m", "Update documentation")
-    session.run("git", "-C", gh_pages_dir, "push", "--force", "origin", "gh-pages")
+    session.git("-C", gh_pages_dir, "add", ".")
+    session.git("-C", gh_pages_dir, "commit", "-m", "Update documentation")
+    session.git("-C", gh_pages_dir, "push", "--force", "origin", "gh-pages")
     # remove worktree
-    session.run("git", "worktree", "remove", "--force", gh_pages_dir)
+    session.git("worktree", "remove", "--force", gh_pages_dir)
     rmtree(gh_pages_dir)
-    session.run("git", "worktree", "prune")
+    session.git("worktree", "prune")
 
 @nox.session(python=[PY_DEFAULT])
 def typing(session: nox.Session) -> None:
