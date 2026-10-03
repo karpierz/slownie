@@ -174,6 +174,3 @@ def _split(value: int) -> tuple[int, int, int, int]:
     else:  # unities >= 5:
         declension = 3
     return (hundreds, tens, unities, declension)
-
-
-del SupportsFloatOrIndex
