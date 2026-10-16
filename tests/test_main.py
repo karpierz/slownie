@@ -1,6 +1,8 @@
 # Copyright (c) 2016 Adam Karpierz
 # SPDX-License-Identifier: Zlib
 
+from __future__ import annotations
+
 import unittest
 
 import slownie
@@ -24,7 +26,10 @@ class SlownieTestCase(unittest.TestCase):
         self.assertEqual(slownie_zl100gr(11), "jedenaście złotych 00/100")
         self.assertEqual(slownie_zl(123), "sto dwadzieścia trzy złote")
         self.assertEqual(slownie_zl100gr(123), "sto dwadzieścia trzy złote 00/100")
-        self.assertEqual(slownie_zl(123.34), "sto dwadzieścia trzy złote trzydzieści cztery grosze")
+        self.assertEqual(slownie_zl(123.34), "sto dwadzieścia trzy złote "
+                                             "trzydzieści cztery grosze")
         self.assertEqual(slownie_zl100gr(123.34), "sto dwadzieścia trzy złote 34/100")
-        self.assertEqual(slownie_zl(123.34, "i"), "sto dwadzieścia trzy złote i trzydzieści cztery grosze")
-        self.assertEqual(slownie_zl(123.34, " i "), "sto dwadzieścia trzy złote i trzydzieści cztery grosze")
+        self.assertEqual(slownie_zl(123.34, "i"), "sto dwadzieścia trzy złote i "
+                                                  "trzydzieści cztery grosze")
+        self.assertEqual(slownie_zl(123.34, " i "), "sto dwadzieścia trzy złote i "
+                                                    "trzydzieści cztery grosze")

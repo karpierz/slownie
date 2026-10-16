@@ -1,11 +1,13 @@
 # Copyright (c) 2016 Adam Karpierz
 # SPDX-License-Identifier: Zlib
 
+from __future__ import annotations
+
+__all__ = ("slownie", "slownie_zl", "slownie_zl100gr")
+
 from typing import TypeAlias, SupportsFloat, SupportsIndex
 from collections.abc import Sequence
 import math
-
-__all__ = ('slownie', 'slownie_zl', 'slownie_zl100gr')
 
 SupportsFloatOrIndex: TypeAlias = SupportsFloat | SupportsIndex
 
